@@ -3,7 +3,7 @@
 void PrintIntroduction()
 {
     // print welcome messages to the terminal
-    std::cout << "You are a secret agent breaking into a secure server room\n";
+    std::cout << "\n\nYou are a secret agent breaking into a secure server room\n";
     std::cout << "You need to enter the correct codes to continue...\n\n";
     std::cout << R"(           
            __________                                 
@@ -20,7 +20,7 @@ void PrintIntroduction()
 +-----------------------------------------------------+)" << '\n' << '\n';
 }
 
-void PlayGame()
+bool PlayGame()
 {
     PrintIntroduction();
 
@@ -68,16 +68,24 @@ _____________|','   ///_/-------------/   |
     if(GuessSum == CodeSum && GuessProduct == CodeProduct)
     {
         std::cout << "\nYou win!";
+        return true;
     }
     else 
     {
         std::cout << "\nYou lose!";
+        return false;
     }
 }
 
 
 int main()
 {
-    PlayGame(); 
+  
+    while(true)
+    {
+        bool bLevelComplete = PlayGame(); 
+        std::cin.clear(); // clears any errors
+        std::cin.ignore(); // discards the buffer
+    }
     return 0;
 }
