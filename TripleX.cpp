@@ -1,10 +1,10 @@
 #include <iostream>
 
-void PrintIntroduction()
+void PrintIntroduction(int Difficulty)
 {
     // print welcome messages to the terminal
-    std::cout << "\n\nYou are a secret agent breaking into a secure server room\n";
-    std::cout << "You need to enter the correct codes to continue...\n\n";
+    std::cout << "\n\nYou are a secret agent breaking into a level " << Difficulty;
+    std::cout << " secure server room...\nYou need to enter the correct codes to continue...\n\n";
     std::cout << R"(           
            __________                                 
          .'----------`.                              
@@ -20,9 +20,9 @@ void PrintIntroduction()
 +-----------------------------------------------------+)" << '\n' << '\n';
 }
 
-bool PlayGame()
+bool PlayGame(int Difficulty)
 {
-    PrintIntroduction();
+    PrintIntroduction(Difficulty);
 
     const int CodeA = 4;
     const int CodeB = 3;
@@ -80,12 +80,17 @@ _____________|','   ///_/-------------/   |
 
 int main()
 {
-  
+    int LevelDifficulty = 1;
     while(true)
     {
-        bool bLevelComplete = PlayGame(); 
+        bool bLevelComplete = PlayGame(LevelDifficulty); 
         std::cin.clear(); // clears any errors
         std::cin.ignore(); // discards the buffer
+        if (bLevelComplete)
+        {
+            ++LevelDifficulty;
+        }
+        
     }
     return 0;
 }
